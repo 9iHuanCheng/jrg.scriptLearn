@@ -18,7 +18,11 @@ var server = http.createServer(function(request, response){
   var method = request.method
 
   /******** 从这里开始看，上面不要看 ************/
-
+/*最初始的版本
+  console.log('方方说：得到 HTTP 路径\n' + path)
+  console.log('方方说：查询字符串为\n' + query)
+  console.log('方方说：不含查询字符串的路径为\n' + pathNoQuery)
+*/
 /*原来版本  console.log('方方说：含查询字符串的路径 \n' + pathWithQuery)
 
   if(path === '/'){
@@ -27,7 +31,31 @@ var server = http.createServer(function(request, response){
     response.write('哈哈哈')
     response.end()
   }*/
-  /*二次修改*/
+  /**这是方方老师修改的文本
+  console.log('HTTP 路径为\n' + path)
+  if(path == '/style'){
+    response.setHeader('Content-Type', 'text/css; charset=utf-8')
+    response.write('body{background-color: #ddd;}h1{color: red;}')
+    response.end()
+  }else if(path == '/script'){
+    response.setHeader('Content-Type', 'text/javascirpt; charset=utf-8')
+    response.write('alert("这是JS执行的")')
+    response.end()
+  }else if(path == '/index'){
+    response.setHeader('Content-Type','text/html; charset=utf-8')
+    response.write('<!DOCTYPE>\n<html>' + 
+	    '<head><link rel = "stylesheet" href = "/style">' + 
+	    '</head><body>' + 
+	    '<h1>您好</h1>' + 
+	    '<script src = "/script"></script>' +
+	    '</body></html>')
+    response.end()
+  }else{
+    response.statusCode = 404
+    response.end()
+  }
+*/
+  /*二次修改
   console.log('HTTP路径为\n' + path);
   if(path === '/style'){
 	  response.setHeader('Content-Type', 'text/css;charset=utf-8');
@@ -45,7 +73,7 @@ var server = http.createServer(function(request, response){
   else if(path === "/"){
 	response.statusCode = 200;
 	response.setHeader('Content-Type','text/html;charset=utf-8');
-	response.write('<!DOCTYPE>' +
+  response.write('<!DOCTYPE>' +
 	'<html>' +
 	'<head>' +
 	'<link rel="stylesheet" href="/style">' +
@@ -66,7 +94,43 @@ var server = http.createServer(function(request, response){
     response.write('呜呜呜,找不到页面了(°ー°〃)')
     response.end()
   }
-
+*/
+/*稍微改了一点，用了下ES6的语法*/
+console.log('HTTP 路径为\n' + path)
+if(path == '/style'){
+  response.setHeader('Content-Type', 'text/css; charset=utf-8')
+  response.write(`
+  body{
+    background-color: #ddd;
+}
+  h1{
+    color: red;
+    }`)
+  response.end()
+}else if(path == '/script'){
+  response.setHeader('Content-Type', 'text/javascirpt; charset=utf-8')
+  response.write('alert("这是JS执行的")')
+  response.end()
+}else if(path == '/index'){
+  response.setHeader('Content-Type','text/html; charset=utf-8')
+  response.write(`
+  <!DOCTYPE>
+  <html>
+    <head>
+      <link rel = "stylesheet" href = "/style">
+    </head>
+    <body>
+      <h1>您好</h1>
+      <script src = "/script"></script>
+    </body>
+  </html>`)
+  response.end()
+}else{
+  response.statusCode = 404
+  response.setHeader('Content-Type', 'text/html;charset=utf-8')
+  response.write('呜呜呜,找不到页面了(°ー°〃)')
+  response.end()
+}
   /******** 代码结束，下面不要看 ************/
 })
 
