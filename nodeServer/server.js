@@ -18,11 +18,12 @@ var server = http.createServer(function(request, response){
   var method = request.method
 
   /******** 从这里开始看，上面不要看 ************/
-/*最初始的版本
+/*最初始的版本 2019/6/10 添加
   console.log('方方说：得到 HTTP 路径\n' + path)
   console.log('方方说：查询字符串为\n' + query)
   console.log('方方说：不含查询字符串的路径为\n' + pathNoQuery)
 */
+
 /*原来版本  console.log('方方说：含查询字符串的路径 \n' + pathWithQuery)
 
   if(path === '/'){
@@ -31,7 +32,8 @@ var server = http.createServer(function(request, response){
     response.write('哈哈哈')
     response.end()
   }*/
-  /**这是方方老师修改的文本
+
+  /**这是方方老师修改的文本 2019/6/10 添加
   console.log('HTTP 路径为\n' + path)
   if(path == '/style'){
     response.setHeader('Content-Type', 'text/css; charset=utf-8')
@@ -55,6 +57,7 @@ var server = http.createServer(function(request, response){
     response.end()
   }
 */
+
   /*二次修改
   console.log('HTTP路径为\n' + path);
   if(path === '/style'){
@@ -95,7 +98,10 @@ var server = http.createServer(function(request, response){
     response.end()
   }
 */
-/*稍微改了一点，用了下ES6的语法*/
+/*稍微改了一点，用了下ES6的语法
+Time: 2019/6/10
+User: Skey
+*/
 console.log('HTTP 路径为\n' + path)
 if(path == '/style'){
   response.setHeader('Content-Type', 'text/css; charset=utf-8')
